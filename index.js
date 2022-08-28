@@ -28,12 +28,14 @@ bot.on('ready', () => {
     TratarLinks();
     MsgExcuida();
     //InforChatt();
+    perfil();
 
     console.log('Bot Online!');
 });
 
 const ChatGrupo = () => {
     bot.on('message', async (msg) => {
+
         let chat = await msg.getChat();
         if (chat.isGroup) {
 
@@ -120,9 +122,7 @@ const ChatGrupo = () => {
 
             } else if (msg.body === '!regras') {
                 msg.reply(regras.execute())
-
             }
-
         }//if
     })//bot
 }//funcao
@@ -195,14 +195,14 @@ const msgContador = () => {
 
                 let numero = contact.number
                 //let chats = contador.unreadCount
-                const nusalvo = fs.readFileSync('./nusalvo.json', 'utf-8');
-                const update = JSON.parse(nusalvo)
+                const nusalvo2 = fs.readFileSync('./nusalvo.json', 'utf-8');
+                const updat2 = JSON.parse(nusalvo2)
                 //chat tem que iniciar com 1 nunca com zero
                 let ChatInicio = 1
                 let tem;
                 let nao;
 
-                update.forEach(el => {
+                updat2.forEach(el => {
                     //chat tem que iniciar com 1 nunca com zero
 
                     let nuUser = el[0]
@@ -217,7 +217,7 @@ const msgContador = () => {
                             let chatFinal = chatUser + chatContado
                             Atualizar(el, 1, chatFinal)
 
-                            fs.writeFileSync('./nusalvo.json', JSON.stringify(update, null, 2))
+                            fs.writeFileSync('./nusalvo.json', JSON.stringify(updat2, null, 2))
 
                         }
                     }
@@ -272,7 +272,7 @@ const TratarLinks = () => {
             const enviada = msgLink.from
 
             if (recebida === 'https') {
-                bot.sendMessage(enviada, "Aguarde Algun ADM vai analizar seu Link ! @Alessandro");
+                bot.sendMessage(enviada, "Aguarde Algun ADM vai analizar seu Link ! \n ADMs Online @Senhor Robô, @Alessandro");
 
             }
         }
@@ -288,6 +288,37 @@ const MsgExcuida = () => {
 
     });
 }
+
+const perfil = () => {
+    bot.on('message', async (ft) => {
+
+        const contact = await ft.getContact();
+        const foto = await contact.getProfilePicUrl()
+        const contador = await ft.getChat();
+        const novoNu = contact.number
+        const picture = await MessageMedia.fromUrl(foto)
+        const jsonar = fs.readFileSync('./nusalvo.json', 'utf-8');
+        const upda = JSON.parse(jsonar)
+        if (contador.isGroup) {
+            //let temF;
+            // let naoF;
+            upda.forEach(el => {
+                let numeroUser = el[0]
+                let chatYUser = el[1]
+                if (novoNu === numeroUser) {
+                    if (chatYUser <= 1) {
+                        contador.sendMessage(`Olá @${novoNu} Bem Vindo Ao Grupo!`, {
+                            mentions: [contact]
+
+                        })
+                        contador.sendMessage(picture)
+                    }
+                }
+            })
+        }//1if
+    })//bot
+}//fuc
+
 
 
 
