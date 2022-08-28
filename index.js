@@ -293,33 +293,38 @@ const perfil = () => {
     bot.on('message', async (ft) => {
 
         const contact = await ft.getContact();
-        const foto = await contact.getProfilePicUrl()
         const contador = await ft.getChat();
-        const novoNu = contact.number
-        const picture = await MessageMedia.fromUrl(foto)
-        const jsonar = fs.readFileSync('./nusalvo.json', 'utf-8');
-        const upda = JSON.parse(jsonar)
-        if (contador.isGroup) {
-            //let temF;
-            // let naoF;
-            upda.forEach(el => {
-                let numeroUser = el[0]
-                let chatYUser = el[1]
-                if (novoNu === numeroUser) {
-                    if (chatYUser <= 1) {
-                        contador.sendMessage(`Olá @${novoNu} Bem Vindo Ao Grupo!`, {
-                            mentions: [contact]
+        const foto = await contact.getProfilePicUrl()
 
-                        })
-                        contador.sendMessage(picture)
+        if (foto == undefined || foto == '' || foto == isNaN) {
+            const novoint = contact.number
+            ft.reply(`Bem Vindo(a) ${novoint}`)
+            ft.reply(menu.execute())
+
+        } else if (foto) {
+            if (contador.isGroup) {
+                const novoNu = contact.number
+                const picture = await MessageMedia.fromUrl(foto)
+                const jsonar = fs.readFileSync('./nusalvo.json', 'utf-8');
+                const upda = JSON.parse(jsonar)
+
+                upda.forEach(el => {
+                    let numeroUser = el[0]
+                    let chatYUser = el[1]
+                    if (novoNu === numeroUser) {
+                        if (chatYUser <= 1) {
+                            contador.sendMessage(`Olá @${novoNu} Bem Vindo Ao Grupo!`, {
+                                mentions: [contact]
+
+                            })
+                            contador.sendMessage(picture)
+                        }
                     }
-                }
-            })
-        }//1if
+                })
+            }
+        }//if else
     })//bot
-}//fuc
-
-
+}//fun
 
 
 bot.initialize();
