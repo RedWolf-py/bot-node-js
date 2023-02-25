@@ -1,3 +1,2 @@
-2022/08/27-16:10:05.486 2244 Reusing MANIFEST C:\Users\Ale\Desktop\BotwhatSsap\.wwebjs_auth\session\Default\Service Worker\Database/MANIFEST-000001
-2022/08/27-16:10:05.718 2244 Recovering log #3
-2022/08/27-16:10:05.721 2244 Reusing old log C:\Users\Ale\Desktop\BotwhatSsap\.wwebjs_auth\session\Default\Service Worker\Database/000003.log 
+2023/02/25-11:48:44.054 137c Creating DB C:\Users\teste\Desktop\botwhats\.wwebjs_auth\session\Default\Service Worker\Database since it was missing.
+2023/02/25-11:48:44.164 137c Reusing MANIFEST C:\Users\teste\Desktop\botwhats\.wwebjs_auth\session\Default\Service Worker\Database/MANIFEST-000001

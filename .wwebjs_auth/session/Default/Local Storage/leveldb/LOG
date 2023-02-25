@@ -1,3 +1,2 @@
-2022/08/27-16:10:05.484 2254 Reusing MANIFEST C:\Users\Ale\Desktop\BotwhatSsap\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
-2022/08/27-16:10:05.699 2254 Recovering log #8
-2022/08/27-16:10:05.700 2254 Reusing old log C:\Users\Ale\Desktop\BotwhatSsap\.wwebjs_auth\session\Default\Local Storage\leveldb/000008.log 
+2023/02/25-11:48:33.160 2528 Creating DB C:\Users\teste\Desktop\botwhats\.wwebjs_auth\session\Default\Local Storage\leveldb since it was missing.
+2023/02/25-11:48:33.410 2528 Reusing MANIFEST C:\Users\teste\Desktop\botwhats\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
