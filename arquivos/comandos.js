@@ -1,7 +1,5 @@
 
 function execute() {
-    //const menu = require('./menu')
-
 
     let tempo = new Date();
     let horas = tempo.getHours();

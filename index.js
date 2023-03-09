@@ -2,12 +2,17 @@
 const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 
+const chamar = require('./arquivos/chamar')
 const comandos = require('./arquivos/comandos')
 const regras = require('./arquivos/regras')
 const menu = require('./arquivos/menu')
-const LinksA = require('./arquivos/linksA')
+const livros = require('./arquivos/livros')
+const botg = require('./arquivos/botg.js')
+const programar = require('./arquivos/programar.js')
+const compilador = require('./arquivos/compilador.js')
 const path = require('path')
 const fs = require('fs');
+const { group } = require('console');
 
 
 const bot = new Client({
@@ -19,6 +24,7 @@ bot.on('qr', qr => {
 });
 
 bot.on('ready', () => {
+
 
     msgContador();
     ChatPrivado();
@@ -34,15 +40,14 @@ bot.on('ready', () => {
     console.log('Bot Online!');
 });
 
+
 const ChatGrupo = () => {
     bot.on('message', async (msg) => {
 
         let chat = await msg.getChat();
         if (chat.isGroup) {
-
             const enviar = msg.from
             const receber = msg.body.toLocaleLowerCase().substring(0, 5).trim().split(" ").join("");
-
 
             if (receber == 'bomd' || receber == 'boan') {
                 bot.sendMessage(enviar, comandos.execute());
@@ -54,12 +59,11 @@ const ChatGrupo = () => {
             } else if (msg.body === '!grupoinfor') {
                 let chatInfor = await msg.getChat();
                 if (chatInfor.isGroup) {
-                    //${chat.owner.user}
 
-                    // Descrição: ${chat.description}
-                    //const contact = await msg.getContact();
                     chat.sendMessage(`
                     *Informações Do Grupo*\n
+                    exclui: ${chat.owner.user}
+                    Descrição: ${chat.description}
                     Name: ${chat.name}
                     Participantes: ${chat.participants.length}
                     Criado Em: ${chat.createdAt.toString()}
@@ -117,12 +121,23 @@ const ChatGrupo = () => {
                     mentions: [contact]
 
                 })
+            } else if (msg.body.toLocaleLowerCase() === 'bot' || msg.body.toLocaleLowerCase() === 'boot' || msg.body.toLocaleLowerCase() === '#bot') {
+                msg.reply(chamar.execute())
 
-            } else if (msg.body === '!midia') {
-                msg.reply(LinksA.execute())
+            } else if (msg.body === '!script') {
+                msg.reply(botg.execute())
+
+            } else if (msg.body === '!livros') {
+                msg.reply(livros.execute())
 
             } else if (msg.body === '!regras') {
                 msg.reply(regras.execute())
+
+            } else if (msg.body === '!programar') {
+                msg.reply(programar.execute())
+
+            } else if (msg.body === '!editorcodigos') {
+                msg.reply(compilador.execute())
             }
         }//if
     })//bot
@@ -144,6 +159,7 @@ const novoUsuario = () => {
     bot.on('group_join', (msgNovo) => {
 
         const novo = msgNovo.recipientIds[0]
+
         msgNovo.reply(`Bem Vindo(a) ${novo}`)
         setTimeout(() => {
             msgNovo.reply(menu.execute())
@@ -152,16 +168,16 @@ const novoUsuario = () => {
     })
 }
 
+
 const UserSair = () => {
     bot.on('group_leave', (exit) => {
-
-
         const contato = exit.recipientIds[0]
 
         exit.reply(`Já Vai Tarde ${contato} \n Saiu...! Mas saiu mais inteligente do que entrou !`, {
             recipientIds: [contato]
 
         });
+
 
     });
 }
@@ -329,3 +345,698 @@ const perfil = () => {
 
 
 bot.initialize();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
